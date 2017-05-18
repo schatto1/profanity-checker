@@ -18,7 +18,13 @@ def check_profanity(text_to_check):
     # print(quoted_url)
     connection = urllib.request.urlopen(url_to_check)
     output = connection.read()
-    print(output)
+
+    #messages to be printed to console
+    if b"true" in output:
+        print("Tsk tsk, bad words were found!")
+    elif b"false" in output:
+        print("Congrats! This is a clean text.")
+    # print(output)
     connection.close()
 
 
