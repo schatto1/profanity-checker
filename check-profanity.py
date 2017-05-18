@@ -1,3 +1,4 @@
+import urllib.parse
 import urllib.request
 
 def read_text():
@@ -9,14 +10,17 @@ def read_text():
     check_profanity(contents_of_files)
 
 def check_profanity(text_to_check):
+    quoted_text = urllib.parse.quote(text_to_check)
     original_url = "http://www.wdylike.appspot.com/?q="
-    url_to_check = "%s%s" % (original_url, text_to_check)
+    url_to_check = "%s%s" % (original_url, quoted_text)
     # print(url_to_check)
+    # quoted_url = urllib.parse.quote(url_to_check)
+    # print(quoted_url)
     connection = urllib.request.urlopen(url_to_check)
     output = connection.read()
     print(output)
     connection.close()
 
 
-#read_text()
-check_profanity("fucking shit")
+read_text()
+# check_profanity("fucking shit")
